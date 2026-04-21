@@ -93,7 +93,7 @@ services:
       - CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG={"peername":"peer0org1"}
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
     volumes:
-      - /var/run/docker.sock:/host/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
       - ../organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com:/etc/hyperledger/fabric
       - peer0.org1.example.com:/var/hyperledger/production
       - ./peercfg:/etc/hyperledger/peercfg
