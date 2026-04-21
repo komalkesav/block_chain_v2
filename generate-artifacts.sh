@@ -14,6 +14,18 @@ mkdir -p "${TEST_NETWORK_DIR}/channel-artifacts"
 
 cd "$TEST_NETWORK_DIR"
 
+# Export paths so binaries and configs are found
+export PATH="${PWD}/../bin:${PWD}/../../bin:${PATH}"
+export FABRIC_CFG_PATH="${PWD}"
+
+# Generate crypto materials if they don't exist
+echo "Generating crypto materials..."
+if [ -d "organizations/peerOrganizations" ]; then
+    echo "existing organizations directory found, skipping cryptogen."
+else
+    cryptogen generate --config=./crypto-config.yaml --output="organizations"
+fi
+
 # Generate genesis block for orderer
 echo "Generating orderer genesis block..."
 configtxgen -profile ThreeOrgsOrdererGenesis -channelID system-channel -outputBlock ./system-genesis-block/genesis.block
