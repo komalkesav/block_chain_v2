@@ -13,7 +13,7 @@ export PEER0_ORG3_CA=${PWD}/fabric-samples/test-network/organizations/peerOrgani
 export CORE_PEER_LOCALMSPID="Org3MSP"
 export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG3_CA
 export CORE_PEER_MSPCONFIGPATH=${PWD}/fabric-samples/test-network/organizations/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp
-export CORE_PEER_ADDRESS=localhost:11051
+export CORE_PEER_ADDRESS=peer0.org3.example.com:11051
 
 echo "Environment set for Org3 (Collectorate Department)"
 echo "CORE_PEER_ADDRESS: $CORE_PEER_ADDRESS"
@@ -67,11 +67,11 @@ commitChaincode() {
         --name land-registration \
         --version 1.0 \
         --sequence 1 \
-        --peerAddresses localhost:7051 \
+        --peerAddresses peer0.org1.example.com:7051 \
         --tlsRootCertFiles $PEER0_ORG1_CA \
-        --peerAddresses localhost:9051 \
+        --peerAddresses peer0.org2.example.com:9051 \
         --tlsRootCertFiles $PEER0_ORG2_CA \
-        --peerAddresses localhost:11051 \
+        --peerAddresses peer0.org3.example.com:11051 \
         --tlsRootCertFiles $PEER0_ORG3_CA
 }
 

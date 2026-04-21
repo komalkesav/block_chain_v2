@@ -13,7 +13,7 @@ export PEER0_ORG3_CA=${PWD}/fabric-samples/test-network/organizations/peerOrgani
 export CORE_PEER_LOCALMSPID="Org1MSP"
 export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
 export CORE_PEER_MSPCONFIGPATH=${PWD}/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-export CORE_PEER_ADDRESS=localhost:7051
+export CORE_PEER_ADDRESS=peer0.org1.example.com:7051
 
 echo "Environment set for Org1 (Registration Department)"
 echo "CORE_PEER_ADDRESS: $CORE_PEER_ADDRESS"
@@ -22,7 +22,7 @@ echo "CORE_PEER_LOCALMSPID: $CORE_PEER_LOCALMSPID"
 # Channel operations for Org1
 createChannel() {
     echo "Creating channel 'mychannel'..."
-    peer channel create -o localhost:7050 -c mychannel \
+    peer channel create -o orderer.example.com:7050 -c mychannel \
         --ordererTLSHostnameOverride orderer.example.com \
         -f ${PWD}/fabric-samples/test-network/channel-artifacts/mychannel.tx \
         --outputBlock ${PWD}/fabric-samples/test-network/channel-artifacts/mychannel.block \

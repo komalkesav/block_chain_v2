@@ -17,7 +17,7 @@ services:
 
   orderer.example.com:
     container_name: orderer.example.com
-    image: hyperledger/fabric-orderer:latest
+    image: hyperledger/fabric-orderer:2.4
     extra_hosts:
       - "peer0.org2.example.com:100.110.209.114"
       - "peer0.org3.example.com:100.67.66.22"
@@ -62,7 +62,7 @@ services:
 
   peer0.org1.example.com:
     container_name: peer0.org1.example.com
-    image: hyperledger/fabric-peer:latest
+    image: hyperledger/fabric-peer:2.4
     extra_hosts:
       - "peer0.org2.example.com:100.110.209.114"
       - "peer0.org3.example.com:100.67.66.22"
