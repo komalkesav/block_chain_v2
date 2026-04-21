@@ -9,6 +9,7 @@ volumes:
   peer0.org2.example.com:
   peer0.org3.example.com:
 
+
 networks:
   test:
     name: fabric_test
@@ -47,9 +48,9 @@ services:
     working_dir: /root
     command: orderer
     volumes:
-        - ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
-        - ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/:/var/hyperledger/orderer/tls
-        - orderer.example.com:/var/hyperledger/production/orderer
+      - ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
+      - ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/:/var/hyperledger/orderer/tls
+      - orderer.example.com:/var/hyperledger/production/orderer
     ports:
       - 7050:7050
       - 7053:7053
@@ -60,6 +61,10 @@ services:
   peer0.org1.example.com:
     container_name: peer0.org1.example.com
     image: hyperledger/fabric-peer:latest
+    extra_hosts:
+      - "orderer.example.com:<Laptop_1_IP>"
+      - "peer0.org1.example.com:<Laptop_1_IP>"
+      - "peer0.org3.example.com:<Laptop_3_IP>"
     labels:
       service: hyperledger-fabric
     environment:
@@ -100,6 +105,10 @@ services:
   peer0.org2.example.com:
     container_name: peer0.org2.example.com
     image: hyperledger/fabric-peer:latest
+    extra_hosts:
+      - "orderer.example.com:<Laptop_1_IP>"
+      - "peer0.org1.example.com:<Laptop_1_IP>"
+      - "peer0.org3.example.com:<Laptop_3_IP>"
     labels:
       service: hyperledger-fabric
     environment:
@@ -140,6 +149,10 @@ services:
   peer0.org3.example.com:
     container_name: peer0.org3.example.com
     image: hyperledger/fabric-peer:latest
+    extra_hosts:
+      - "orderer.example.com:<Laptop_1_IP>"
+      - "peer0.org1.example.com:<Laptop_1_IP>"
+      - "peer0.org3.example.com:<Laptop_3_IP>"
     labels:
       service: hyperledger-fabric
     environment:
