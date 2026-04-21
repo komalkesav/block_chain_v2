@@ -49,7 +49,7 @@ approveChaincode() {
         --cafile $ORDERER_CA \
         --channelID mychannel \
         --name land-registration \
-        --version 1.0 \
+        --version 7.0 \
         --package-id $CC_PACKAGE_ID \
         --sequence 1
 }
@@ -65,7 +65,7 @@ commitChaincode() {
         --cafile $ORDERER_CA \
         --channelID mychannel \
         --name land-registration \
-        --version 1.0 \
+        --version 7.0 \
         --sequence 1 \
         --peerAddresses peer0.org1.example.com:7051 \
         --tlsRootCertFiles $PEER0_ORG1_CA \

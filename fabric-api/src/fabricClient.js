@@ -65,7 +65,7 @@ class FabricClient {
 
             await gateway.connect(ccp, {
                 identity: identity,
-                discovery: { enabled: true, asLocalhost: true }
+                discovery: { enabled: false }
             });
 
             // Get the network (channel) our contract is deployed to
