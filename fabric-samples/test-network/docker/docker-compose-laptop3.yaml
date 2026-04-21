@@ -20,7 +20,7 @@ services:
     extra_hosts:
       - "orderer.example.com:100.67.211.112"
       - "peer0.org1.example.com:100.67.211.112"
-      - "peer0.org2.example.com:100.110.209.114"
+      - "peer0.org2.example.com:10.42.137.73"
     labels:
       service: hyperledger-fabric
     environment:

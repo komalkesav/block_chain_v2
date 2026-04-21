@@ -19,7 +19,7 @@ services:
     container_name: orderer.example.com
     image: hyperledger/fabric-orderer:2.4
     extra_hosts:
-      - "peer0.org2.example.com:100.110.209.114"
+      - "peer0.org2.example.com:10.42.137.73"
       - "peer0.org3.example.com:100.67.66.22"
     labels:
       service: hyperledger-fabric
@@ -37,7 +37,8 @@ services:
       - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
       - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
       - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
-      - ORDERER_GENERAL_BOOTSTRAPMETHOD=none
+      - ORDERER_GENERAL_BOOTSTRAPMETHOD=file
+      - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/orderer/orderer.genesis.block
       - ORDERER_CHANNELPARTICIPATION_ENABLED=true
       - ORDERER_ADMIN_TLS_ENABLED=true
       - ORDERER_ADMIN_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
@@ -53,6 +54,7 @@ services:
       - ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
       - ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/:/var/hyperledger/orderer/tls
       - orderer.example.com:/var/hyperledger/production/orderer
+      - ../system-genesis-block/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
     ports:
       - 7050:7050
       - 7053:7053
@@ -64,7 +66,7 @@ services:
     container_name: peer0.org1.example.com
     image: hyperledger/fabric-peer:2.4
     extra_hosts:
-      - "peer0.org2.example.com:100.110.209.114"
+      - "peer0.org2.example.com:10.42.137.73"
       - "peer0.org3.example.com:100.67.66.22"
     labels:
       service: hyperledger-fabric
